@@ -1,6 +1,6 @@
 import RPi.GPIO as GPIO                   
 import time                                
-relee = 17                         
+relee = 11                        
 GPIO.setmode(GPIO.BOARD)                  
 GPIO.setup(relee, GPIO.OUT) 
 GPIO.cleanup()
