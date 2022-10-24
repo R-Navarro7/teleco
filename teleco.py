@@ -1,14 +1,9 @@
-import RPi.GPIO as GPIO                   
-import time                                
-relee = 11                        
-GPIO.setmode(GPIO.BCM)                  
-GPIO.setup(relee, GPIO.OUT)
-GPIO.setwarnings(False) 
-GPIO.cleanup()
-
-while True:                              
-    GPIO.output(relee, True)      
-    time.sleep(1)   
-    GPIO.output(relee, False)   
-    time.sleep(1)  
-    GPIO.cleanup()                 
+import RPi.GPIO as GPIO
+import time
+GPIO.setmode (GPIO.BOARD)
+GPIO.setup (11,GPIO.OUT)
+while True:
+    GPIO.output(11,True)
+    time.sleep(2)
+    GPIO.output(11,False)
+    time.sleep(2)                 
