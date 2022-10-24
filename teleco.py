@@ -1,4 +1,4 @@
-import RPIO as GPIO                   
+import RPi.GPIO as GPIO                   
 import time                                
 relee = 17                         
 GPIO.setmode(GPIO.BCM)                  
