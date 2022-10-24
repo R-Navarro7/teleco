@@ -1,7 +1,7 @@
 import RPi.GPIO as GPIO                   
 import time                                
 
-relee = 17                           
+relee = 11                         
 GPIO.setmode(GPIO.BCM)                  
 GPIO.setup(relee, GPIO.OUT) 
 
