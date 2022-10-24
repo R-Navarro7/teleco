@@ -6,7 +6,7 @@ GPIO.setmode(GPIO.BCM)
 GPIO.setup(relee, GPIO.OUT) 
 
 while True:                              
-    GPIO.output(relee, GPIO.HIGH)      
+    GPIO.output(relee, True)      
     time.sleep(1)   
-    GPIO.output(relee, GPIO.LOW)   
+    GPIO.output(relee, False)   
     time.sleep(1)                   
