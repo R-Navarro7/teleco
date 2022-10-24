@@ -1,9 +1,9 @@
-import RPi.GPIO as GPIO                   
+import RPIO as GPIO                   
 import time                                
-GPIO.cleanup()
 relee = 17                         
 GPIO.setmode(GPIO.BCM)                  
 GPIO.setup(relee, GPIO.OUT) 
+GPIO.cleanup()
 
 while True:                              
     GPIO.output(relee, True)      
