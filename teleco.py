@@ -32,8 +32,10 @@ while True:
         print(f"Temperature: {temp}*C   Humidity: {humidity}% ")
         if (temp > temp_threshold and humidity > humidity_theshold) and actuator_on:
             GPIO.output(out_pin, GPIO.HIGH)
-        if (temp > temp_threshold and humidity > humidity_theshold) and not actuator_on:
+            actuator_on = True
+        if (temp > temp_threshold and humidity > humidity_theshold) and actuator_on:
             GPIO.output(out_pin, GPIO.LOW)
+            actuator_on = False
     except RuntimeError as error:
         print(error.args[0])
         time.sleep(2.0)
