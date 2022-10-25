@@ -4,21 +4,18 @@ import adafruit_dht
 import psutil
 import time
 
-pins = [11,16,2] # relay, sensor_1, sensor_2
+out_pin = 11 # relay, sensor_1, sensor_2
+temp_threshold = 25
+humidity_theshold = 50
 
-#def setup(pins):
-    
-    #setup_pin(pins[0], 0)
-    #setup_pin(pins[1], 1)
-    #setup_pin([pins[2]], 1)
+actuator_on = False
 
-def setup_pin(pin,mode_input):
-    gpio_modes = GPIO.OUT, GPIO.IN
-    mode = gpio_modes[mode_input]
+def setup(pin):   
+    mode = GPIO.OUT
     GPIO.setmode (GPIO.BOARD)
     GPIO.setup (pin,mode)
 
-#setup(pins)
+setup(out_pin)
 
 for proc in psutil.process_iter():
     if proc.name() == 'libgpiod_pulsein' or proc.name() == 'libgpiod_pulsei':
@@ -30,7 +27,11 @@ while True:
     try:
         temp = sensor.temperature
         humidity = sensor.humidity
-        print("Temperature: {}*C   Humidity: {}% ".format(temp, humidity))
+        print(f"Temperature: {temp}*C   Humidity: {humidity}% ")
+        if (temp > temp_threshold and humidity > humidity_theshold) and actuator_on:
+            GPIO.output(out_pin, GPIO.HIGH)
+        if (temp > temp_threshold and humidity > humidity_theshold) and not actuator_on:
+            GPIO.output(out_pin, GPIO.LOW)
     except RuntimeError as error:
         print(error.args[0])
         time.sleep(2.0)
@@ -40,8 +41,4 @@ while True:
         raise error
     time.sleep(2.0)
 
-# for i in range(10):
-#     GPIO.output(pins[0],True)
-#     time.sleep(2)
-#     GPIO.output(pins[0],False)
-#     time.sleep(2)                 
+             
