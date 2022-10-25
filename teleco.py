@@ -1,15 +1,17 @@
 import RPi.GPIO as GPIO
 import time
 
-def setup():
-    relee, sensor_1, sensor_2 = 11,1,2
-    setup_pin(relee, 0)
-    setup_pin(sensor_1, 1)
-    setup_pin(sensor_2, 1)
+pins = [11,1,2] # relay, sensor_1, sensor_2
 
-def setup_pin(pin,mod):
-    modes = GPIO.OUT, GPIO.IN
-    mode = modes[mod]
+def setup(pins):
+    
+    setup_pin(pins[0], 0)
+    setup_pin(pins[1], 1)
+    setup_pin([pins[2]], 1)
+
+def setup_pin(pin,mode_input):
+    gpio_modes = GPIO.OUT, GPIO.IN
+    mode = gpio_modes[mode_input]
     GPIO.setmode (GPIO.BOARD)
     GPIO.setup (pin,mode)
 
