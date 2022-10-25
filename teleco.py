@@ -15,7 +15,7 @@ def setup_pin(pin,mode_input):
     GPIO.setmode (GPIO.BOARD)
     GPIO.setup (pin,mode)
 
-
+setup(pins)
 
 for i in range(10):
     GPIO.output(8,True)
