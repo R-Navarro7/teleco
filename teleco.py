@@ -1,8 +1,10 @@
 import RPi.GPIO as GPIO
-import Adafruit_DHT
+import board
+import adafruit_dht
+import psutil
 import time
 
-pins = [11,7,2] # relay, sensor_1, sensor_2
+pins = [11,16,2] # relay, sensor_1, sensor_2
 
 def setup(pins):
     
@@ -18,11 +20,25 @@ def setup_pin(pin,mode_input):
 
 setup(pins)
 
-while True:
-    humidity, temperature = Adafruit_DHT.read_retry(11, 4)
+for proc in psutil.process_iter():
+    if proc.name() == 'libgpiod_pulsein' or proc.name() == 'libgpiod_pulsei':
+        proc.kill()
 
-    print ('Temp: {0:0.1f} C  Humidity: {1:0.1f} %'.format(temperature, humidity))
-    time.sleep(0.5)
+sensor = adafruit_dht.DHT11(board.D23)
+
+while True:
+    try:
+        temp = sensor.temperature
+        humidity = sensor.humidity
+        print("Temperature: {}*C   Humidity: {}% ".format(temp, humidity))
+    except RuntimeError as error:
+        print(error.args[0])
+        time.sleep(2.0)
+        continue
+    except Exception as error:
+        sensor.exit()
+        raise error
+    time.sleep(2.0)
 
 # for i in range(10):
 #     GPIO.output(pins[0],True)
