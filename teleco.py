@@ -1,7 +1,8 @@
 import RPi.GPIO as GPIO
+import Adafruit_DHT
 import time
 
-pins = [11,23,2] # relay, sensor_1, sensor_2
+pins = [11,7,2] # relay, sensor_1, sensor_2
 
 def setup(pins):
     
@@ -18,7 +19,9 @@ def setup_pin(pin,mode_input):
 setup(pins)
 
 while True:
-    print(GPIO.input(pins[1]))
+    humidity, temperature = Adafruit_DHT.read_retry(11, 4)
+
+    print ('Temp: {0:0.1f} C  Humidity: {1:0.1f} %'.format(temperature, humidity))
     time.sleep(0.5)
 
 # for i in range(10):
