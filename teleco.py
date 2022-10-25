@@ -11,6 +11,7 @@ humidity_theshold = 50
 actuator_on = False
 
 def setup(pin):   
+    GPIO.cleanup()
     mode = GPIO.OUT
     GPIO.setmode (GPIO.BCM)
     GPIO.setup (pin,mode)
@@ -22,6 +23,7 @@ for proc in psutil.process_iter():
         proc.kill()
 
 sensor = adafruit_dht.DHT11(board.D23)
+GPIO.output(out_pin, GPIO.LOW)
 
 while True:
     try:
