@@ -4,7 +4,7 @@ import adafruit_dht
 import psutil
 import time
 
-out_pin = 11 # relay, sensor_1, sensor_2
+out_pin = 17 # relay, sensor_1, sensor_2
 temp_threshold = 25
 humidity_theshold = 50
 
@@ -12,7 +12,7 @@ actuator_on = False
 
 def setup(pin):   
     mode = GPIO.OUT
-    GPIO.setmode (GPIO.BOARD)
+    GPIO.setmode (GPIO.BCM)
     GPIO.setup (pin,mode)
 
 setup(out_pin)
