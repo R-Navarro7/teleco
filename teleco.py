@@ -34,7 +34,7 @@ while True:
             GPIO.output(out_pin, GPIO.HIGH)
             actuator_on = True
             print("actuador encendido")
-        if (temp < temp_threshold and humidity < humidity_theshold) and actuator_on:
+        if (temp < temp_threshold or humidity < humidity_theshold) and actuator_on:
             GPIO.output(out_pin, GPIO.LOW)
             actuator_on = False
             print("actuador apagado")
