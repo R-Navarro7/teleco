@@ -5,8 +5,8 @@ import psutil
 import time
 
 out_pin = 17 # relay, sensor_1, sensor_2
-temp_threshold = 25
-humidity_theshold = 50
+temp_threshold = 23
+humidity_theshold = 60
 
 actuator_on = False
 
