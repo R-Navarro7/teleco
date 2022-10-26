@@ -14,7 +14,7 @@ def setup(pin):
     GPIO.cleanup()
     mode = GPIO.OUT
     GPIO.setmode (GPIO.BCM)
-    GPIO.setup (pin,mode)
+    GPIO.setup (pin,mode, initial=GPIO.HIGH)
 
 setup(out_pin)
 
@@ -23,8 +23,6 @@ for proc in psutil.process_iter():
         proc.kill()
 
 sensor = adafruit_dht.DHT11(board.D23)
-
-GPIO.output(out_pin, GPIO.HIGH)
 
 while True:
     try:
