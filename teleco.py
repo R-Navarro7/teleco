@@ -23,7 +23,8 @@ for proc in psutil.process_iter():
         proc.kill()
 
 sensor = adafruit_dht.DHT11(board.D23)
-GPIO.output(out_pin, GPIO.LOW)
+
+GPIO.output(out_pin, GPIO.HIGH)
 
 while True:
     try:
@@ -31,11 +32,11 @@ while True:
         humidity = sensor.humidity
         print(f"Temperature: {temp}*C   Humidity: {humidity}% ")
         if (temp > temp_threshold and humidity > humidity_theshold) and not actuator_on:
-            GPIO.output(out_pin, GPIO.HIGH)
+            GPIO.output(out_pin, GPIO.LOW)
             actuator_on = True
             print("actuador encendido")
         if (temp < temp_threshold or humidity < humidity_theshold) and actuator_on:
-            GPIO.output(out_pin, GPIO.LOW)
+            GPIO.output(out_pin, GPIO.HIGH)
             actuator_on = False
             print("actuador apagado")
     except RuntimeError as error:
