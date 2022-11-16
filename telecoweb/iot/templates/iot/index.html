@@ -1,0 +1,10 @@
+<h1>Que onda locoooo</h1>
+{% if meassure_list %}
+    <ul>
+    {% for meassure in meassure_list %}
+        <li> Temperature: {{meassure.temp_value}} | Humidity: {{meassure.hum_value}} | Date: {{meassure.pub_date}}</li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No meassures are available.</p>
+{% endif %}
