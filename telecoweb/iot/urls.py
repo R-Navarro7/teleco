@@ -7,6 +7,6 @@ app_name = 'iot'
 urlpatterns = [
     # ex: /iot/
     path('', views.index, name='index'),
-    # ex: /temp/"23.5"/hum/"0.67"
-    path('temp/<str:temp>/hum/<str:hum>/', views.add_meassure, name='add_meassure')
+    # ex: /iot/post/"
+    path('post/', views.add_meassure, name='add_meassure')
 ]
