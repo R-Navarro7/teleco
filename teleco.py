@@ -3,8 +3,12 @@ import board
 import adafruit_dht
 import psutil
 import time
+import subprocess
+from get_ip import *
 
-out_pin = 17 # relay, sensor_1, sensor_2
+ip = get_ip()
+
+out_pin = 17 # relay
 temp_threshold = 23
 humidity_theshold = 60
 
@@ -37,6 +41,7 @@ while True:
             GPIO.output(out_pin, GPIO.HIGH)
             actuator_on = False
             print("actuador apagado")
+        subprocess.run([f"curl -d \"temp={temp}\" -d \"hum={humidity}%\" -X POST http://{ip}:8000/iot/post/" ])
     except RuntimeError as error:
         print(error.args[0])
         time.sleep(2.0)
@@ -44,6 +49,6 @@ while True:
     except Exception as error:
         sensor.exit()
         raise error
-    time.sleep(2.0)
+    time.sleep(30.0)
 
              
