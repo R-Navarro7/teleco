@@ -41,7 +41,11 @@ while True:
             GPIO.output(out_pin, GPIO.HIGH)
             actuator_on = False
             print("actuador apagado")
-        subprocess.Popen([f"curl -d \"temp={temp}\" -d \"hum={humidity}%\" -X POST http://{ip}:8000/iot/post/" ])
+
+        bashCommand = f"curl -d \"temp={temp}\" -d \"hum={humidity}%\" -X POST http://{ip}:8000/iot/post/"
+        process = subprocess.Popen(bashCommand.split(), stdout=subprocess.PIPE)
+        output, error = process.communicate()
+
     except RuntimeError as error:
         print(error.args[0])
         time.sleep(2.0)
