@@ -42,7 +42,7 @@ while True:
             actuator_on = False
             print("actuador apagado")
 
-        bashCommand = f"curl -d \"temp={temp}\" -d \"hum={humidity}%\" -X POST http://{ip}:8000/iot/post/"
+        bashCommand = f"curl -d temp={temp} -d hum={humidity}% -X POST http://{ip}:8000/iot/post/"
         process = subprocess.Popen(bashCommand.split(), stdout=subprocess.PIPE)
         output, error = process.communicate()
 
