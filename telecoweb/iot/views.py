@@ -16,8 +16,10 @@ def index(request):
 def add_meassure(request):
     if request.method == 'POST':
         data = request.POST.dict()
+        print(data)
         Meassure.objects.create(temp_value=data['temp'],hum_value=data['hum'],pub_date=timezone.now())        
         return HttpResponseRedirect('/')
     else:
         pass
     return HttpResponseRedirect('/')
+
