@@ -17,14 +17,14 @@
           datasets: [{
             label: "Temperature",
             data : [{% for item in plot_list %}{{ item.temp_value }},{% endfor %}],
-            backgroundColor: 'rgba(75, 192, 192, 0.2)',
-            borderColor: 'rgba(75, 192, 192, 1)',
+            backgroundColor: 'rgba(192, 75, 192, 0.2)',
+            borderColor: 'rgba(192, 75, 192, 1)',
             borderWidth: 1
           },{
             label: "Humidity",
             data : [{% for item in plot_list %}{{ item.hum_value }},{% endfor %}],
-            backgroundColor: 'rgba(192, 75, 192, 0.2)',
-            borderColor: 'rgba(192, 75, 192, 1)',
+            backgroundColor: 'rgba(75, 192, 192, 0.2)',
+            borderColor: 'rgba(75, 192, 192, 1)',
             borderWidth: 1
           }]
       },
@@ -36,6 +36,14 @@
           }
       }
   });
+  
+  function addData(chart, label, data) {
+    chart.data.labels.push(label);
+    chart.data.datasets.forEach((dataset) => {
+        dataset.data.push(data);
+    });
+    chart.update();
+}
   </script>
 
 </body>
