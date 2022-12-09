@@ -9,8 +9,10 @@ from django.views.decorators.csrf import csrf_exempt
 # Create your views here.
 def index(request):
     meassure_list = Meassure.objects.all().values()
-    context = {"meassure_list" : meassure_list}
-    return render(request, 'iot/index.html', context)
+    m_len = len(meassure_list)
+    plot_list = meassure_list[m_len-30:]
+    context = {"meassure_list" : meassure_list, "plot_list": plot_list}
+    return render(request, 'iot/base.html', context)
 
 @csrf_exempt
 def add_meassure(request):
