@@ -21,7 +21,7 @@ def update(request):
     m_len = len(meassure_list)
     plot_list = meassure_list[m_len-30:]
     context = {"meassure_list" : meassure_list, "plot_list": plot_list}
-    return render(request, 'iot/test.html', context)
+    return context
 
 @csrf_exempt
 def add_meassure(request):

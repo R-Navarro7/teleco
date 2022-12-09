@@ -39,10 +39,11 @@
     function update_chart() {
     $.ajax({
         type: 'GET', //post method
-        url: '../', //ajaxformexample url
+        url: '', //ajaxformexample url
         dataType: "json",
-        success: function (result, textStatus, jqXHR)
+        success: function (result)
         {
+            myChart.data = result
             myChart.update();
         }
     });
