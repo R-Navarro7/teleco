@@ -6,6 +6,6 @@ cd /
 cd home/pablo/teleco
 
 sudo source bin/activate
-sudo python launcher.py
+sudo python telecoweb/manage.py runserver 192.168.1.169:8000
 
 cd /
