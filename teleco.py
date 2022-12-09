@@ -9,7 +9,7 @@ from get_ip import *
 ip = get_ip()
 
 out_pin = 17 # relay
-temp_threshold = 27
+temp_threshold = 15
 humidity_theshold = 55
 
 actuator_on = False
