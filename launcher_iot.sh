@@ -6,4 +6,4 @@ cd /
 cd home/pablo/teleco
 
 sudo source bin/activate
-python teleco.py
+sudo python teleco.py
