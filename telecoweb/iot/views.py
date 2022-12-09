@@ -14,6 +14,13 @@ def index(request):
     context = {"meassure_list" : meassure_list, "plot_list": plot_list}
     return render(request, 'iot/base.html', context)
 
+def update(request):
+    meassure_list = Meassure.objects.all().values()
+    m_len = len(meassure_list)
+    plot_list = meassure_list[m_len-30:]
+    context = {"meassure_list" : meassure_list, "plot_list": plot_list}
+    return render(request, 'iot/chart.html', context)
+
 @csrf_exempt
 def add_meassure(request):
     if request.method == 'POST':
