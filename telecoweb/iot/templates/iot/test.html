@@ -44,6 +44,17 @@
       myChart.data.datasets[1].data = t_data
       myChart.update();
     };
+    function loadDoc() {
+      var xhttp = new XMLHttpRequest();
+      xhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+          document.getElementById("myChart").innerHTML =
+          this.responseText;
+        }
+      };
+      xhttp.open("GET", "iot/post/", true);
+      xhttp.send();
+    }
     </script>
     <button type="button" onclick="addData()">Get Chart</button>
 </body>
