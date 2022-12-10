@@ -38,7 +38,7 @@
     function addData() {
       myChart.data.labels.push("new_data");
       myChart.data.datasets.forEach((dataset) => {
-          dataset.data.push(plot_list[0].temp_value);
+          dataset.data.push(plot_list[1].temp_value);
       });
       myChart.update();
     };
