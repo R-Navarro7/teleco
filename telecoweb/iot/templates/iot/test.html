@@ -36,9 +36,11 @@
       }
     });
     function addData() {
-      myChart.data.labels.push("new_data");
+      const t_data = [{% for item in plot_list %}{{ item.temp_value }},{% endfor %}];
+      const new_labels = [{% for item in plot_list %}"{{ item.pub_date }}",{% endfor %}];
+      myChart.data.labels = new_labels
       myChart.data.datasets.forEach((dataset) => {
-          dataset.data.push({{plot_list[1].temp_value}});
+          dataset.data = t_data
       });
       myChart.update();
     };
