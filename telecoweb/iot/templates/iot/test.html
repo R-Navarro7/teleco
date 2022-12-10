@@ -37,11 +37,11 @@
     });
     function addData() {
       const t_data = [{% for item in plot_list %}{{ item.temp_value }},{% endfor %}];
+      const h_data = [{% for item in plot_list %}{{ item.hum_value }},{% endfor %}];
       const new_labels = [{% for item in plot_list %}"{{ item.pub_date }}",{% endfor %}];
       myChart.data.labels = new_labels
-      myChart.data.datasets.forEach((dataset) => {
-          dataset.data = t_data
-      });
+      myChart.data.datasets[0] = h_data
+      myChart.data.datasets[1] = t_data
       myChart.update();
     };
     </script>
