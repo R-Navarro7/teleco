@@ -35,14 +35,14 @@
           }
       }
     });
-    function addData(chart, label, data) {
-      chart.data.labels.push(label);
-      chart.data.datasets.forEach((dataset) => {
-          dataset.data.push(data);
+    function addData() {
+      myChart.data.labels.push("new_data");
+      myChart.data.datasets.forEach((dataset) => {
+          dataset.data.push(20);
       });
-      chart.update();
+      myChart.update();
     };
     </script>
-    <button type="button" onclick="addData(myChart, "hi", 20)">Get Chart</button>
+    <button type="button" onclick="addData()">Get Chart</button>
 </body>
 </html>
