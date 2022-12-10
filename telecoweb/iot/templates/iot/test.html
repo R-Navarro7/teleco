@@ -40,8 +40,8 @@
       const h_data = [{% for item in plot_list %}{{ item.hum_value }},{% endfor %}];
       const new_labels = [{% for item in plot_list %}"{{ item.pub_date }}",{% endfor %}];
       myChart.data.labels = new_labels
-      myChart.data.datasets[0] = h_data
-      myChart.data.datasets[1] = t_data
+      myChart.data.datasets[0].data = h_data
+      myChart.data.datasets[1].data = t_data
       myChart.update();
     };
     </script>
