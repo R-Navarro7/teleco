@@ -6,7 +6,7 @@ import time
 import subprocess
 from get_ip import *
 
-ip = get_ip()
+ip = "192.168.1.169"
 
 out_pin = 17 # relay
 temp_threshold = 15
@@ -28,8 +28,6 @@ for proc in psutil.process_iter():
 
 sensor = adafruit_dht.DHT11(board.D23)
 
-time.sleep(5.0)
-
 while True:
     try:
         temp = sensor.temperature
@@ -44,7 +42,7 @@ while True:
             actuator_on = False
             print("actuador apagado")
 
-        bashCommand = f"curl -d temp={temp} -d hum={humidity} -X POST http://{ip}:8000/iot/post/"
+        bashCommand = f"/usr/bin/curl -d temp={temp} -d hum={humidity} -X POST http://{ip}:8000/iot/post/"
         process = subprocess.Popen(bashCommand.split(), stdout=subprocess.PIPE)
         output, error = process.communicate()
 
