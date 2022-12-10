@@ -13,7 +13,7 @@ def index(request):
     m_len = len(meassure_list)
     plot_list = meassure_list[m_len-30:]
     context = {"meassure_list" : meassure_list, "plot_list": plot_list}
-    return render(request, 'iot/base.html', context)
+    return render(request, 'iot/test.html', context)
 
 @csrf_exempt
 def update(request):
