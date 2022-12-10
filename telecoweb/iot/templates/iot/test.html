@@ -4,7 +4,7 @@
 <title>IoT</title>
 </head>
 <body>
-  <button type="button" onclick="update_chart()">Get Chart</button>
+  <button type="button" onclick="addData(myChart, hi, 20)">Get Chart</button>
   <canvas id="myChart" width="800" height="400"></canvas>
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
@@ -36,17 +36,13 @@
           }
       }
     });
-    function update_chart() {
-    $.ajax({
-        type: 'GET', //post method
-        url: '', //ajaxformexample url
-        dataType: "json",
-        success: function (result)
-        {
-            myChart.data = result
-            myChart.update();
-        }
-    });
+    function addData(chart, label, data) {
+      chart.data.labels.push(label);
+      chart.data.datasets.forEach((dataset) => {
+          dataset.data.push(data);
+      });
+      chart.update();
+    }
     };
     </script>
 </body>
