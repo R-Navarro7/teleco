@@ -27,7 +27,7 @@ const myChart = new Chart(ctx, graph)
 
 
 
-var socket = new WebSocket('ws://localhost:8000/ws/iot/');
+var socket = new WebSocket('ws://192.168.1.169:8000/ws/iot/');
 
 socket.onmessage = function(e){
     var djangoData = JSON.parse(e.data);
