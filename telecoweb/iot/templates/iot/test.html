@@ -36,6 +36,7 @@
       }
     });
     function addData() {
+<<<<<<< HEAD
       var responseText = document.getElementById('response');
       var xmlhttp = new XMLHttpRequest(); 
       var url = "http://127.0.0.1:8000/iot/update";
@@ -54,9 +55,28 @@
       myChart.data.datasets.forEach((dataset) => {
           dataset.data.push(20);
       });
+=======
+      const t_data = [{% for item in plot_list %}{{ item.temp_value }},{% endfor %}];
+      const h_data = [{% for item in plot_list %}{{ item.hum_value }},{% endfor %}];
+      const new_labels = [{% for item in plot_list %}"{{ item.pub_date }}",{% endfor %}];
+      myChart.data.labels = new_labels
+      myChart.data.datasets[0].data = h_data
+      myChart.data.datasets[1].data = t_data
+>>>>>>> e3bad93faad09bd2d312561ac735cec936cf7594
       myChart.update();
     };
+    function loadDoc() {
+      var xhttp = new XMLHttpRequest();
+      xhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+          document.getElementById("myChart").innerHTML =
+          this.responseText;
+        }
+      };
+      xhttp.open("GET", "iot/post/", true);
+      xhttp.send();
+    }
     </script>
-    <button type="button" onclick="addData()">Get Chart</button>
+    <button type="button" onclick="loadDoc()">Get Chart</button>
 </body>
 </html>
