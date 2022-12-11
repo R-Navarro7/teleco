@@ -3,7 +3,6 @@
 # run web server and sensor script on startup
 
 cd /
-cd home/pablo/teleco
+cd home/ubuntu/teleco
 
-sudo source bin/activate
-sudo python teleco.py
+sudo python3 teleco.py
