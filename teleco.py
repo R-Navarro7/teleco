@@ -48,7 +48,7 @@ while True:
 
     except RuntimeError as error:
         print(error.args[0])
-        time.sleep(2.0)
+        time.sleep(0.1)
         continue
     except Exception as error:
         sensor.exit()
