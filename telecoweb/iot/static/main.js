@@ -19,7 +19,11 @@ const graph = {
             borderWidth: 1
         }]
     },
-    options: {}
+    options: {
+        animation: {
+            duration: 0
+        }
+    }
 };
 
 const myChart = new Chart(ctx, graph)

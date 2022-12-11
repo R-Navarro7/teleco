@@ -53,5 +53,5 @@ while True:
     except Exception as error:
         sensor.exit()
         raise error
-    time.sleep(5.0)
+    time.sleep(1.0)
 

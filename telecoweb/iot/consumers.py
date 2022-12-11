@@ -19,4 +19,4 @@ class GraphConsumer(WebsocketConsumer):
                 json_['pub_date'] = i['pub_date'].strftime('%d-%m-%Y %H:%M:%S')
                 response += [json_]
             self.send(json.dumps(response))
-            sleep(5)
+            sleep(1)
