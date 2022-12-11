@@ -1,9 +1,20 @@
-{% if meassure_list %}
-    <ul>
-    {% for meassure in meassure_list %}
-        <li> Temperatura: {{meassure.temp_value}} | Humedad: {{meassure.hum_value}} | Fecha: {{meassure.pub_date}} </li>
-    {% endfor %}
-    </ul>
-{% else %}
-    <p>No meassures are available.</p>
-{% endif %}
+<!DOCTYPE html>
+<html>
+<head>
+<title>IoT</title>
+<script>;
+function ajaxCallToServer() {
+    var responseText = document.getElementById('response');
+    var xmlhttp = new XMLHttpRequest(); 
+    var url = "http://127.0.0.1:8000/iot/update";
+    xmlhttp.responseType = "json"; 
+    xmlhttp.open("GET", url,true);
+    xmlhttp.send();
+    xmlhttp.response["temp_value"]
+}
+</script>
+</head>
+...
+<body>
+    <p id="data"></p>
+</body>

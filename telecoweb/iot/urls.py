@@ -10,5 +10,7 @@ urlpatterns = [
     # ex: /iot/post/"
     path('post/', views.add_meassure, name='add_meassure'),
     # ex: /iot/update
-    path('update/', views.update, name='update')
+    path('update/', views.update, name='update'),
+    # ex: /iot/test
+    path('main/', views.main, name='main'),
 ]

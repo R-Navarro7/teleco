@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-l=br(*sjsb0q3--9%%_))l&$p)yt0v6oiw4!h*h3e+4xyi#%^+
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["192.168.1.169"]
+ALLOWED_HOSTS = ["192.168.1.169","127.0.0.1"]
 
 
 # Application definition
@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'channels',
 ]
 
 MIDDLEWARE = [
@@ -70,6 +71,7 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'telecoweb.wsgi.application'
+ASGI_APPLICATION = 'telecoweb.asgi.application'
 
 
 # Database
@@ -107,7 +109,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'GMT'
+TIME_ZONE = 'GMT-4'
 
 USE_I18N = True
 
@@ -120,7 +122,9 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 
 STATIC_URL = '/static/'
-
+STATICFILES_DIRS = [
+    BASE_DIR.joinpath('iot/static')
+    ]
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 

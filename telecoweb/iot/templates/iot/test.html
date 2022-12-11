@@ -36,6 +36,20 @@
       }
     });
     function addData() {
+      var responseText = document.getElementById('response');
+      var xmlhttp = new XMLHttpRequest(); 
+      var url = "http://127.0.0.1:8000/iot/update";
+      xmlhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+          
+          }
+      };
+      xmlhttp.open("GET", url,true);
+      xmlhttp.responseType = "json"; 
+      var resp = JSON.parse(xmlhttp.response)
+      xmlhttp.send();
+      console.log(resp)
+
       myChart.data.labels.push("new_data");
       myChart.data.datasets.forEach((dataset) => {
           dataset.data.push(20);
