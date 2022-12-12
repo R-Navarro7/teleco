@@ -33,18 +33,19 @@ while True:
         temp = sensor.temperature
         humidity = sensor.humidity
         print(f"Temperature: {temp}*C   Humidity: {humidity}% ")
-        if (temp > temp_threshold and humidity > humidity_theshold) and not actuator_on:
-            GPIO.output(out_pin, GPIO.LOW)
-            actuator_on = True
-            print("actuador encendido")
-        if (temp < temp_threshold or humidity < humidity_theshold) and actuator_on:
-            GPIO.output(out_pin, GPIO.HIGH)
-            actuator_on = False
-            print("actuador apagado")
+        if (temp is not None and humidity is not None):
+            if (temp > temp_threshold and humidity > humidity_theshold) and not actuator_on:
+                GPIO.output(out_pin, GPIO.LOW)
+                actuator_on = True
+                print("actuador encendido")
+            if (temp < temp_threshold or humidity < humidity_theshold) and actuator_on:
+                GPIO.output(out_pin, GPIO.HIGH)
+                actuator_on = False
+                print("actuador apagado")
 
-        bashCommand = f"/usr/bin/curl -d temp={temp} -d hum={humidity} -X POST http://{ip}:8000/iot/post/"
-        process = subprocess.Popen(bashCommand.split(), stdout=subprocess.PIPE)
-        output, error = process.communicate()
+            bashCommand = f"/usr/bin/curl -d temp={temp} -d hum={humidity} -X POST http://{ip}:8000/iot/post/"
+            process = subprocess.Popen(bashCommand.split(), stdout=subprocess.PIPE)
+            output, error = process.communicate()
 
     except RuntimeError as error:
         print(error.args[0])
@@ -53,5 +54,8 @@ while True:
     except Exception as error:
         sensor.exit()
         raise error
+    except TypeError as error:
+        time.sleep(0.1)
+        continue
     time.sleep(1.0)
 

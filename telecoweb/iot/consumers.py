@@ -2,12 +2,14 @@ import json
 from time import sleep
 import random
 from channels.generic.websocket import WebsocketConsumer
+from django.core import serializers
+from asgiref.sync import sync_to_async
 
 class GraphConsumer(WebsocketConsumer):
     def connect(self):
         self.accept()
-        while True: 
-            from .models import Meassure           
+        while True:
+            from .models import Meassure
             meassure_list = Meassure.objects.all().values()
             m_len = len(meassure_list)
             plot_list = meassure_list[m_len-30:]
